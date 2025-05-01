@@ -1,40 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"time"
+	"log"
 
 	// uiscreen "github.com/KennyZ69/termUIlibK/screen"
+	applib "github.com/KennyZ69/termUIlibK/app"
 	termui "github.com/KennyZ69/termUIlibK/term"
+)
+
+const (
+	width  = 480
+	height = 200
 )
 
 func main() {
 	termui.RawMode()
 	defer termui.DisableRaw()
 
-	keysChan := make(chan rune)
+	app := applib.NewApp(width, height)
+	defer app.Screen.Clear()
 
-	termui.Listen(keysChan)
+	// app.Screen.AddStr(30, 0, "Welcome to termUIlibK!")
+	// app.Screen.AddStr(30, 2, "Press 'q' to exit")
+	// app.Screen.DrawAll()
 
-	// scr := uiscreen.NewScreen(80, 24)
-	// scr.Clear()
-	// scr.AddStr(36, 0, "Hello to testing!")
-	// scr.DrawAll()
+	termui.PrintAt(width/2-10, height-2, "Welcome to termUIlibK!")
+	termui.PrintAt(width/2-10, height-4, "Press 'q' to exit")
 
-	for {
-		select {
-		case key := <-keysChan:
-			if key == 'q' || key == 'Q' {
-				termui.PrintAt(0, 0, "Exiting... ")
-				return
-			}
-
-			termui.PrintAt(2, 5, fmt.Sprintf("Key pressed: %q [code: %d]", key, key))
-			// scr.AddStr(2, 5, fmt.Sprintf("Key pressed: %q [code: %d]", key, key))
-			// scr.DrawAll()
-		default:
-			time.Sleep(100 * time.Millisecond)
-		}
+	if err := app.Run(); err != nil {
+		log.Fatal(err)
 	}
-
 }

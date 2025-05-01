@@ -12,5 +12,9 @@ type Cell struct {
 
 func (c *Cell) Print(x, y int) {
 	termui.MoveCursor(x, y)
-	fmt.Printf("%q", string(c.Ch))
+	if c.Fg != 0 || c.Bg != 0 {
+		fmt.Printf("\033[38;5;%dm\033[48;5;%dm%c\033[0m", c.Fg, c.Bg, c.Ch)
+	} else {
+		fmt.Printf("%c", c.Ch)
+	}
 }

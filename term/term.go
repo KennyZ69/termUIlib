@@ -2,7 +2,6 @@ package termuilib
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 
@@ -24,13 +23,12 @@ func RawMode() error {
 	signal.Notify(sig, os.Interrupt)
 	go func() {
 		<-sig
-		log.Printf("Interrupted\nExiting ... \n")
+		PrintAt(0, 0, "Interrupted\nExiting ... \n")
 		os.Exit(0)
 	}()
 
 	fmt.Print(clearScreen)
 	fmt.Print(hideCursor)
-	PrintAt(70, 0, "Hello to TermUI!")
 
 	return nil
 }
@@ -38,6 +36,7 @@ func RawMode() error {
 func DisableRaw() {
 	if state != nil {
 		term.Restore(0, state)
+		fmt.Print(clearScreen)
 		fmt.Print(showCursor)
 	}
 }
