@@ -17,7 +17,7 @@ func MoveCursor(x, y int) {
 }
 
 // PrintAt prints a string at the specified coordinates in the window
-func PrintAt(x, y int, str string) {
-	MoveCursor(x, y)
-	fmt.Print(str)
-}
+// func PrintAt(x, y int, str string) {
+// 	MoveCursor(x, y)
+// 	fmt.Print(str)
+// }

@@ -1,6 +1,8 @@
 package main
 
-import ()
+import (
+	ui "github.com/KennyZ69/termUIlibK"
+)
 
 const (
 	width  = 480
@@ -8,5 +10,5 @@ const (
 )
 
 func main() {
-
+	ui.PrintTest(0, 0, "Welcome")
 }

@@ -35,3 +35,7 @@ func NewScreen(width, height int) *Screen {
 		Dirty:  dirty,
 	}
 }
+
+func (s *Screen) Size() (int, int) {
+	return s.Width, s.Height
+}
