@@ -36,7 +36,7 @@ func RawMode() error {
 func DisableRaw() {
 	if state != nil {
 		term.Restore(0, state)
-		fmt.Print(clearScreen)
+		// fmt.Print(clearScreen)
 		fmt.Print(showCursor)
 	}
 }

@@ -9,6 +9,8 @@ const (
 	showCursor  = "\033[?25h"
 )
 
+type MouseEvent int16
+
 // moveCursor moves the cursor to specified coordinates in the terminal
 func MoveCursor(x, y int) {
 	fmt.Printf("\033[%d;%dH", y, x) // row ; col
